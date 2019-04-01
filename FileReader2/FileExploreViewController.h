@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  FileExploreViewController.h
 //  FileReader2
 //
 //  Created by 陈统盼 on 2019/3/24.
@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FileExploreViewController : UIViewController
 
 
 @end
 
+NS_ASSUME_NONNULL_END

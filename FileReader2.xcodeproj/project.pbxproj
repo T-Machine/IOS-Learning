@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		241EAF822247A9BB004691F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAF812247A9BB004691F5 /* AppDelegate.m */; };
-		241EAF852247A9BB004691F5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAF842247A9BB004691F5 /* FirstViewController.m */; };
-		241EAF882247A9BB004691F5 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAF872247A9BB004691F5 /* SecondViewController.m */; };
 		241EAF8B2247A9BB004691F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241EAF892247A9BB004691F5 /* Main.storyboard */; };
 		241EAF8D2247A9C0004691F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 241EAF8C2247A9C0004691F5 /* Assets.xcassets */; };
 		241EAF902247A9C0004691F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241EAF8E2247A9C0004691F5 /* LaunchScreen.storyboard */; };
 		241EAF932247A9C0004691F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAF922247A9C0004691F5 /* main.m */; };
 		241EAF9D2247A9C0004691F5 /* FileReader2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAF9C2247A9C0004691F5 /* FileReader2Tests.m */; };
 		241EAFA82247A9C0004691F5 /* FileReader2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAFA72247A9C0004691F5 /* FileReader2UITests.m */; };
+		241EAFB72247AAC4004691F5 /* FileExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAFB62247AAC4004691F5 /* FileExploreViewController.m */; };
+		241EAFBA2247CC2F004691F5 /* FileDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241EAFB92247CC2F004691F5 /* FileDetialViewController.m */; };
+		241EAFBF2247D322004691F5 /* icon_directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 241EAFBD2247D322004691F5 /* icon_directory.png */; };
+		241EAFC02247D322004691F5 /* icon_file.png in Resources */ = {isa = PBXBuildFile; fileRef = 241EAFBE2247D322004691F5 /* icon_file.png */; };
+		24BE99AF224F493700ED1412 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BE99AE224F493700ED1412 /* NetworkViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +42,6 @@
 		241EAF7D2247A9BB004691F5 /* FileReader2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileReader2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		241EAF802247A9BB004691F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		241EAF812247A9BB004691F5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		241EAF832247A9BB004691F5 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		241EAF842247A9BB004691F5 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		241EAF862247A9BB004691F5 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		241EAF872247A9BB004691F5 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		241EAF8A2247A9BB004691F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		241EAF8C2247A9C0004691F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		241EAF8F2247A9C0004691F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +53,14 @@
 		241EAFA32247A9C0004691F5 /* FileReader2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileReader2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		241EAFA72247A9C0004691F5 /* FileReader2UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileReader2UITests.m; sourceTree = "<group>"; };
 		241EAFA92247A9C0004691F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		241EAFB52247AAA7004691F5 /* FileExploreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileExploreViewController.h; sourceTree = "<group>"; };
+		241EAFB62247AAC4004691F5 /* FileExploreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileExploreViewController.m; sourceTree = "<group>"; };
+		241EAFB82247CC12004691F5 /* FileDetialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDetialViewController.h; sourceTree = "<group>"; };
+		241EAFB92247CC2F004691F5 /* FileDetialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDetialViewController.m; sourceTree = "<group>"; };
+		241EAFBD2247D322004691F5 /* icon_directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_directory.png; sourceTree = "<group>"; };
+		241EAFBE2247D322004691F5 /* icon_file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_file.png; sourceTree = "<group>"; };
+		24BE99AE224F493700ED1412 /* NetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkViewController.m; sourceTree = "<group>"; };
+		24BE99B0224F494600ED1412 /* NetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,17 +111,21 @@
 		241EAF7F2247A9BB004691F5 /* FileReader2 */ = {
 			isa = PBXGroup;
 			children = (
+				241EAFBD2247D322004691F5 /* icon_directory.png */,
+				241EAFBE2247D322004691F5 /* icon_file.png */,
 				241EAF802247A9BB004691F5 /* AppDelegate.h */,
 				241EAF812247A9BB004691F5 /* AppDelegate.m */,
-				241EAF832247A9BB004691F5 /* FirstViewController.h */,
-				241EAF842247A9BB004691F5 /* FirstViewController.m */,
-				241EAF862247A9BB004691F5 /* SecondViewController.h */,
-				241EAF872247A9BB004691F5 /* SecondViewController.m */,
 				241EAF892247A9BB004691F5 /* Main.storyboard */,
 				241EAF8C2247A9C0004691F5 /* Assets.xcassets */,
 				241EAF8E2247A9C0004691F5 /* LaunchScreen.storyboard */,
 				241EAF912247A9C0004691F5 /* Info.plist */,
 				241EAF922247A9C0004691F5 /* main.m */,
+				241EAFB52247AAA7004691F5 /* FileExploreViewController.h */,
+				241EAFB62247AAC4004691F5 /* FileExploreViewController.m */,
+				241EAFB82247CC12004691F5 /* FileDetialViewController.h */,
+				241EAFB92247CC2F004691F5 /* FileDetialViewController.m */,
+				24BE99AE224F493700ED1412 /* NetworkViewController.m */,
+				24BE99B0224F494600ED1412 /* NetworkViewController.h */,
 			);
 			path = FileReader2;
 			sourceTree = "<group>";
@@ -242,6 +253,8 @@
 			files = (
 				241EAF902247A9C0004691F5 /* LaunchScreen.storyboard in Resources */,
 				241EAF8D2247A9C0004691F5 /* Assets.xcassets in Resources */,
+				241EAFBF2247D322004691F5 /* icon_directory.png in Resources */,
+				241EAFC02247D322004691F5 /* icon_file.png in Resources */,
 				241EAF8B2247A9BB004691F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,10 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241EAF882247A9BB004691F5 /* SecondViewController.m in Sources */,
+				241EAFB72247AAC4004691F5 /* FileExploreViewController.m in Sources */,
 				241EAF822247A9BB004691F5 /* AppDelegate.m in Sources */,
 				241EAF932247A9C0004691F5 /* main.m in Sources */,
-				241EAF852247A9BB004691F5 /* FirstViewController.m in Sources */,
+				241EAFBA2247CC2F004691F5 /* FileDetialViewController.m in Sources */,
+				24BE99AF224F493700ED1412 /* NetworkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
