@@ -269,3 +269,82 @@ completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
 #### 文件下载
 
+使用网络访问从服务器上下载一个1M的文件，步骤与其他的网络访问基本相同：
+
+- 创建defaultConfigObject
+- 初始化NSURLSession
+- 创建NSURL及NSURLSessionDownloadTask
+- 执行Task
+
+```objective-c
+- (void) downloadFile {
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];    
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject
+delegate: self
+delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:18081/download/test.txt"];    
+    NSURLSessionDownloadTask *downloadTask =[ defaultSession downloadTaskWithURL:url];
+    self.downloadTask = downloadTask;
+    [downloadTask resume];
+}
+```
+
+下载下来的文件会以.tmp文件的形式存在缓存中，可以在block回调中对其进行处理，但这里选择使用代理方法：
+
+- 重载函数`URLSession:downloadTask:didFinishDownloadingToURL:`
+- 从参数location获得.tmp文件的位置信息
+- 获取NSFileManager文件管理对象
+- 获取document路径
+- 创建一个新文件的URL，由document路径及新的文件名组成
+- 调用fileManager的moveItemAtURL:toURL:方法将.tmp文件以新的名字移动到document中
+
+```objective-c
+// 写入数据到本地时调用的代理方法
+- (void)URLSession:(nonnull NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(nonnull NSURL *)location {
+    // 显示下载完成时的文件路径
+    NSLog(@"Location :%@\n", location);
+    NSError *err = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    // 将文件移动到document中
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    // 设置文件名
+    NSURL *docsDirURL = [NSURL fileURLWithPath:[docsDir stringByAppendingPathComponent:@"test.txt"]];
+    [fileManager moveItemAtURL:location
+                         toURL:docsDirURL
+                         error: &err];
+}
+```
+
+此外还要实现以进度条的形式显示下载进度，步骤如下：
+
+- 布局peogressView控件
+- 重载函数`URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:`
+- 通过totalBytesWritten和totalBytesExpectedToWrite计算出当前进度的百分比
+- 使用dispatch_async的方法异步更新UI中的控件显示，包括progressView和Label
+
+```objective-c
+// 下载数据的过程中调用的代理方法
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    float progress = totalBytesWritten * 1.0 /totalBytesExpectedToWrite;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.progressView setProgress:progress animated:YES];
+        [self.progressNumber setText:[[NSString alloc] initWithFormat:@"%ld%%", (NSInteger)(progress * 100)]];
+    });
+}
+```
+
+##### 断点续传
+
+NSURLSessionDownloadTask的suspend方法可以暂停下载任务，调用resume可以重新启动任务，以此实现断点续传。
+
+```objective-c
+- (IBAction)DOWNLOAD_PAUSE:(id)sender {
+    [self.downloadTask suspend];
+}
+
+- (IBAction)DOWNLOAD_GO_ON:(id)sender {
+    [self.downloadTask resume];
+}
+```
+
