@@ -12,15 +12,15 @@
 
 这里首先要有一个TableViewController，因为静态的元素必须在TableViewController中才能设置。然后在左侧的对象面板中选中TableView，将右侧属性面板中的Content属性改为Static Cells，如图：
 
-![屏幕快照 2019-04-10 下午9.16.14](assets\屏幕快照 2019-04-10 下午9.16.14.png)
+![屏幕快照 2019-04-10 下午9.16.14](./assets/w4-1.png)
 
 Content属性下方的Sections属性是用来设置表格中的Section个数的，这里先设置为1.这样在左侧的对象面板里就能看到TableView对象中包含了一个TableViewSection对象。选中该对象后，可以在右侧面板设置rows属性，确定该Section中的元素行数。设定完后就能看到TableViewSection下多了几个TableViewCell对象，这就是每一行的Cell了。点进每个Cell就可以分别在其ContentView中添加不同的内容，比如放置一个Label。
 
-![屏幕快照 2019-04-10 下午9.21.47](assets\屏幕快照 2019-04-10 下午9.21.47.png)
+![屏幕快照 2019-04-10 下午9.21.47](./assets/w4-2.png)
 
 此外在storyboard中还能设置各个TableViewCell的相关事件，比如点击触发事件。这里给各个Cell设置一个跳转到其他页面的事件，通过Triggerd Segues实现。首先选择相应的Cell，然后在属性面板的最后一个页面可以看到Triggerd Segues的属性，按住control点击其右边的圆圈并拖动到另一个页面就能实现绑定，此时会出现多个选项，选择第一个"Show"，即可完成点击跳转功能。
 
-![屏幕快照 2019-04-10 下午10.06.15](assets\屏幕快照 2019-04-10 下午10.06.15.png)
+![屏幕快照 2019-04-10 下午10.06.15](./assets/w4-3.png)
 
 
 
@@ -100,4 +100,4 @@ NSString *tmpPath = NSTemporaryDirectory();
 
 运行结果示例：
 
-![屏幕快照 2019-04-11 上午1.40.51](assets\屏幕快照 2019-04-11 上午1.40.51-4918112.png)
+![屏幕快照 2019-04-11 上午1.40.51](./assets/w4-4.png)
