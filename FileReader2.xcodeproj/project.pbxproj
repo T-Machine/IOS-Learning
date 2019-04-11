@@ -19,6 +19,7 @@
 		241EAFBF2247D322004691F5 /* icon_directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 241EAFBD2247D322004691F5 /* icon_directory.png */; };
 		241EAFC02247D322004691F5 /* icon_file.png in Resources */ = {isa = PBXBuildFile; fileRef = 241EAFBE2247D322004691F5 /* icon_file.png */; };
 		24A0E3F0225E52F70097F086 /* PathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0E3EF225E52F70097F086 /* PathViewController.m */; };
+		24A0E3F5225F55850097F086 /* FileIOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0E3F4225F55850097F086 /* FileIOViewController.m */; };
 		24BE99AF224F493700ED1412 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BE99AE224F493700ED1412 /* NetworkViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		241EAFBE2247D322004691F5 /* icon_file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_file.png; sourceTree = "<group>"; };
 		24A0E3EE225E52D90097F086 /* PathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathViewController.h; sourceTree = "<group>"; };
 		24A0E3EF225E52F70097F086 /* PathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathViewController.m; sourceTree = "<group>"; };
+		24A0E3F3225F52AD0097F086 /* FileIOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileIOViewController.h; sourceTree = "<group>"; };
+		24A0E3F4225F55850097F086 /* FileIOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileIOViewController.m; sourceTree = "<group>"; };
 		24BE99AE224F493700ED1412 /* NetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkViewController.m; sourceTree = "<group>"; };
 		24BE99B0224F494600ED1412 /* NetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 				24BE99B0224F494600ED1412 /* NetworkViewController.h */,
 				24A0E3EE225E52D90097F086 /* PathViewController.h */,
 				24A0E3EF225E52F70097F086 /* PathViewController.m */,
+				24A0E3F3225F52AD0097F086 /* FileIOViewController.h */,
+				24A0E3F4225F55850097F086 /* FileIOViewController.m */,
 			);
 			path = FileReader2;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				241EAF932247A9C0004691F5 /* main.m in Sources */,
 				241EAFBA2247CC2F004691F5 /* FileDetialViewController.m in Sources */,
 				24BE99AF224F493700ED1412 /* NetworkViewController.m in Sources */,
+				24A0E3F5225F55850097F086 /* FileIOViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

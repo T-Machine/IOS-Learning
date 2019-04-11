@@ -2,9 +2,22 @@
 
 ## 本周总体学习情况
 
+本周主要学习内容如下：
+
+- IOS沙盒相关的知识，即应用程序的文件存储路径
+  - 沙盒中的文件目录分类
+  - 访问沙盒中目录的方法
+- 文件IO的相关知识
+  - 基本的文件IO操作
+  - 复杂对象的归档和解档
+
+此外在实践的过程中学习到了一些使用storyboard的经验，比如设置静态表格和快速定义页面间的跳转等。
+
+实践Project：[Github](https://github.com/T-Machine/IOS-Learning)
 
 
 
+## StoryBoard使用经验
 
 ### 在storyboard中设置静态TableView
 
@@ -24,15 +37,13 @@ Content属性下方的Sections属性是用来设置表格中的Section个数的�
 
 
 
+## 沙盒的相关知识
 
-
-### 沙盒的相关知识
-
-#### 沙盒的概念
+### 沙盒的概念
 
 在IOS中，每个程序都有属于自己的独立存储空间和文件系统，并且各个程序只能在属于它的文件系统中进行操作，这个存储空间就说沙盒。每个应用只能访问自己的沙盒，除了代码以外的各种文件（比如媒体资源），都要保存在沙盒中。
 
-#### 沙盒中的文件目录
+### 沙盒中的文件目录
 
 - **AppName.app**
 
@@ -58,7 +69,7 @@ Content属性下方的Sections属性是用来设置表格中的Section个数的�
 
   应用保存应用程序运行时产生等临时文件，不会被iTunes备份，并且会在iPhone重启时清空。
 
-#### 访问沙盒中的文件目录
+### 访问沙盒中的文件目录
 
 沙盒的根目录路径可以通过`NSHomeDirectory`来获取，tmp目录的路径可以通过`NSTemporaryDirectory`方法获取。
 
@@ -101,3 +112,112 @@ NSString *tmpPath = NSTemporaryDirectory();
 运行结果示例：
 
 ![屏幕快照 2019-04-11 上午1.40.51](./assets/w4-4.png)
+
+
+
+## 文件IO相关知识
+
+### 文件IO基本操作
+
+IOS中利用的`writeToFile:filepath:atomically:encoding:error:`方法可以将一些简单的对象写入目标文件中，其原型为：
+
+```objective-c
+(BOOL)writeToFile:(NSString *)path atomically:(BOOL)flagDescription encoding:(NSStringEncoding)enc error:(NSError * _Nullable *)error
+```
+
+- 第一个参数为待写入的文件路径；
+- 第二个参数 是否进行线性操作（YES保证发生意外时有中转文件来保存信息 直至写入完成 但是损耗大. NO的时候写入速度快 但是没有安全保障）；
+- 第三个参数设置编码的方式；
+- 最后一个参数为错误返回；
+
+该方法在NSString、NSArray、NSDictionary、NSData等类中均有定义。这些简单对象通过调用该方法即可写入文件中。
+
+除了写入外，还可以从文件中读取数据放入到这些简单对象里面，使用的方法为`XXXWithContentsOfFile`，其参数及使用方法与写入文件的方法基本相同。各个类都有其对应的读取文件方法：
+
+```objective-c
+NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+NSArray *array = [NSArray arrayWithContentsOfFile:path];
+NSDictionary *dic =[NSDictionary dictionaryWithContentsOfFile:path];
+```
+
+### 归档和解档
+
+以上是简单对象的文件IO方法，而对于复杂对象，比如自己定义的类，如果要实现持久化存储，就需要利用归档和解档。归档就是利用序列化的方法，以某种格式来保存一个或多个对象，即将复杂的对象简单化，以便于将数据保存到本地的过程。
+
+**序列化与反序列化**：将一个Objective-C对象转换成NSData的操作叫做对象的序列化，反之称为反序列化。为了支持序列化和反序列化，对象需要实现\<NSCoding\>协议。因此如果要归档自定义对象，就需要在类中实现以下方法：
+
+```objective-c
+- (void)encodeWithCoder:(NSCoder *)aCoder;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
+```
+
+如果用了继承，则子类一定要重写NSCoding协议的两个方法。
+
+归档主要用到的类是`NSKeyedArchiver`，解档则用到`NSKeyedUnarchiver`，它们可以对单个对象进行归档和解档：
+
+```objective-c
+// 将object归档到path对应的文件中
+[NSKeyedArchiver archiveRootObject:object toFile:path];
+// 将path中的内容解档到object中
+id object = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+```
+
+也可以对多个对象进行归档解档，利用了`NSMutableData`，通过设置Key来区分不同对象：
+
+```objective-c
+NSMutableData *data = [NSMutableData data];
+NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+// 进行编码
+[archiver encodeObject:object forKey:@"key"];
+[archiver encodeObject:object1 forKey:@"key1"];
+[archiver finishEncoding];
+// 写入文件
+[data writeToFile:path atomically:YES];
+```
+
+```objective-c
+NSMutableData *data = [[NSMutableData alloc] initWithContentsOfFile:path];
+NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//解码
+id object = [unarchiver decodeObjectForKey:@"key"];
+id object1 = [unarchiver decodeObjectForKey:@"key1"];
+[unarchiver finishDecoding];
+```
+
+### IO操作实践
+
+这里实现一个简单的将字符串写入文件并从文件读取内容的功能。
+
+利用fileManager判断目标文件是否存在，若不存在则用`createFileAtPath:contents:attributes:`方法创建一个新的文件。然后获取输入框的内容并写入到该文件中，最后是从该文件读取内容。
+
+```objective-c
+- (void)viewDidLoad {
+    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    self.filePath = [document stringByAppendingPathComponent:@"Hello.txt"];
+}
+
+- (IBAction)writeFile:(id)sender {
+  	// 判断文件是否存在　
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSLog(@"path: %@", self.filePath);
+    if (![fileManager fileExistsAtPath:self.filePath]) {
+        NSData *data = [@"" dataUsingEncoding:NSUTF8StringEncoding];
+        [fileManager createFileAtPath:self.filePath contents:data attributes:nil];
+    }
+    
+    // 写文件
+    NSString *contents = [self.textWrite text];
+    [contents writeToFile:self.filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (IBAction)readFile:(id)sender {
+    // 读文件
+    NSString *content = [NSString stringWithContentsOfFile:self.filePath encoding:NSUTF8StringEncoding error:nil];
+    [self.textRead setText:content];
+}
+```
+
+实现效果：
+
+![屏幕快照 2019-04-11 下午7.33.29](./assets/w4-5.png)
+
