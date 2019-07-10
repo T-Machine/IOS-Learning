@@ -107,6 +107,7 @@
 - (void)changeTextView1: (NSData *)data {
     
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    NSLog(@"%@\n", jsonDict);
     NSDictionary *result = [jsonDict objectForKey:@"result"];
     NSArray *jijie = [result objectForKey:@"jijie"];
     
